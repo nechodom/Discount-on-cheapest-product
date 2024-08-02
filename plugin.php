@@ -1,15 +1,17 @@
 <?php
 /*
 Plugin Name: Discount for 3 Products
-Description: Provides a 100% discount for the cheapest product when 3 products are in the cart.
-Version: 1.1
+Description: Provides a discount for the cheapest product when 3 products are in the cart.
+Version: 1.2
 Author: Matěj Kevin Nechodom
 */
 
 // Přidání menu do administrace
 function dp_register_settings() {
     add_option( 'dp_enable_discount', '1' );
+    add_option( 'dp_discount_percentage', '100' );
     register_setting( 'dp_options_group', 'dp_enable_discount', 'dp_callback' );
+    register_setting( 'dp_options_group', 'dp_discount_percentage', 'intval' );
 }
 add_action( 'admin_init', 'dp_register_settings' );
 
@@ -29,6 +31,10 @@ function dp_options_page() {
     <th scope="row"><label for="dp_enable_discount">Enable Discount</label></th>
     <td><input type="checkbox" id="dp_enable_discount" name="dp_enable_discount" value="1" <?php checked( 1, get_option( 'dp_enable_discount' ), true ); ?> /></td>
     </tr>
+    <tr valign="top">
+    <th scope="row"><label for="dp_discount_percentage">Discount Percentage</label></th>
+    <td><input type="number" id="dp_discount_percentage" name="dp_discount_percentage" value="<?php echo get_option( 'dp_discount_percentage' ); ?>" /></td>
+    </tr>
     </table>
     <?php  submit_button(); ?>
     </form>
@@ -47,6 +53,8 @@ function custom_woocommerce_cart_discount() {
         return;
     }
 
+    $discount_percentage = get_option( 'dp_discount_percentage' );
+
     $cart = WC()->cart->get_cart();
     $product_prices = array();
 
@@ -63,7 +71,10 @@ function custom_woocommerce_cart_discount() {
     // Získejte nejnižší cenu
     $lowest_price = $product_prices[0];
 
+    // Vypočítejte slevu na základě procenta
+    $discount_amount = ($lowest_price * $discount_percentage) / 100;
+
     // Přidejte slevu odpovídající nejnižší ceně
-    WC()->cart->add_fee( 'Zdarma nejlevnější produkt', -$lowest_price );
+    WC()->cart->add_fee( 'Sleva na nejlevnější produkt', -$discount_amount );
 }
 add_action( 'woocommerce_cart_calculate_fees', 'custom_woocommerce_cart_discount' );
