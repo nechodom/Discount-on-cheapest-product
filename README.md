@@ -39,7 +39,7 @@ The discount will now be applied to the cheapest product in the cart when the sp
 ## Screenshots
 
 ### Settings Page
-![Settings Page](https://i.imgur.com/CSLYLWI.png)
+![Settings Page](https://i.imgur.com/P0tf2EE.png)
 
 ## Changelog
 
