@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Discount for 3 Products
-Description: Provides a discount for the cheapest product when 3 products are in the cart.
-Version: 1.2
+Description: Provides a discount for the cheapest product when a specified number of products are in the cart.
+Version: 1.3
 Author: Matěj Kevin Nechodom
 */
 
@@ -10,8 +10,10 @@ Author: Matěj Kevin Nechodom
 function dp_register_settings() {
     add_option( 'dp_enable_discount', '1' );
     add_option( 'dp_discount_percentage', '100' );
+    add_option( 'dp_minimum_products', '3' );
     register_setting( 'dp_options_group', 'dp_enable_discount', 'dp_callback' );
     register_setting( 'dp_options_group', 'dp_discount_percentage', 'intval' );
+    register_setting( 'dp_options_group', 'dp_minimum_products', 'intval' );
 }
 add_action( 'admin_init', 'dp_register_settings' );
 
@@ -35,6 +37,10 @@ function dp_options_page() {
     <th scope="row"><label for="dp_discount_percentage">Discount Percentage</label></th>
     <td><input type="number" id="dp_discount_percentage" name="dp_discount_percentage" value="<?php echo get_option( 'dp_discount_percentage' ); ?>" /></td>
     </tr>
+    <tr valign="top">
+    <th scope="row"><label for="dp_minimum_products">Minimum Products in Cart</label></th>
+    <td><input type="number" id="dp_minimum_products" name="dp_minimum_products" value="<?php echo get_option( 'dp_minimum_products' ); ?>" /></td>
+    </tr>
     </table>
     <?php  submit_button(); ?>
     </form>
@@ -48,8 +54,10 @@ function custom_woocommerce_cart_discount() {
         return;
     }
 
-    // Zkontrolujte, zda je v košíku alespoň 3 produkty
-    if ( WC()->cart->get_cart_contents_count() < 3 ) {
+    $minimum_products = get_option( 'dp_minimum_products' );
+
+    // Zkontrolujte, zda je v košíku alespoň nastavený počet produktů
+    if ( WC()->cart->get_cart_contents_count() < $minimum_products ) {
         return;
     }
 
