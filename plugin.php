@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Discount for 3 Products
-Description: Provides a 100% discount for the cheapest product. Minimal is 3 products in the cart.
-Version: 1.0
+Description: Provides a 100% discount for the cheapest product when 3 products are in the cart.
+Version: 1.1
 Author: Matěj Kevin Nechodom
 */
 
@@ -52,7 +52,9 @@ function custom_woocommerce_cart_discount() {
 
     // Získejte ceny všech produktů v košíku
     foreach ( $cart as $cart_item_key => $cart_item ) {
-        $product_prices[] = $cart_item['line_total'];
+        for ($i = 0; $i < $cart_item['quantity']; $i++) {
+            $product_prices[] = $cart_item['line_total'] / $cart_item['quantity'];
+        }
     }
 
     // Seřaďte ceny od nejnižší po nejvyšší
