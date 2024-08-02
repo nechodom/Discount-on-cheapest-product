@@ -1,19 +1,20 @@
 # Discount for Cheapest Product Plugin
 
-**Plugin Name:** Discount for cheapest product
+**Plugin Name:** Discount for Cheapest Product  
 **Description:** Provides a discount for the cheapest product when a specified number of products are in the cart.  
-**Version:** 1.2  
+**Version:** 1.3  
 **Author:** Matěj Kevin Nechodom  
 
 ## Description
 
-This WordPress plugin provides a discount for the cheapest product in the cart when a specified number of products are in the cart. The discount percentage and the minimum number of products required to activate the discount can be set in the plugin settings.
+This WordPress plugin provides a discount for the cheapest product in the cart when a specified number of products are in the cart. The discount percentage, the minimum number of products required to activate the discount, and the discount text can be set in the plugin settings.
 
 ## Features
 
 - Apply a discount to the cheapest product in the cart.
 - Set the discount percentage in the plugin settings.
 - Set the minimum number of products required to activate the discount.
+- Customize the discount text.
 - Enable or disable the discount through the plugin settings.
 
 ## Installation
@@ -30,7 +31,8 @@ This WordPress plugin provides a discount for the cheapest product in the cart w
 2. Enable the discount by checking the "Enable Discount" checkbox.
 3. Set the discount percentage in the "Discount Percentage" field.
 4. Set the minimum number of products required to activate the discount in the "Minimum Products in Cart" field.
-5. Save changes.
+5. Customize the discount text in the "Discount Text" field.
+6. Save changes.
 
 The discount will now be applied to the cheapest product in the cart when the specified number of products are added to the cart.
 
@@ -40,6 +42,9 @@ The discount will now be applied to the cheapest product in the cart when the sp
 ![Settings Page](https://i.imgur.com/CSLYLWI.png)
 
 ## Changelog
+
+### 1.3
+- Added option to customize the discount text.
 
 ### 1.2
 - Added option to set the minimum number of products required to activate the discount.
@@ -60,6 +65,9 @@ Go to Settings > Discount Settings and enter the desired percentage in the "Disc
 
 ### How do I set the minimum number of products required to activate the discount?
 Go to Settings > Discount Settings and enter the desired number in the "Minimum Products in Cart" field.
+
+### How do I customize the discount text?
+Go to Settings > Discount Settings and enter the desired text in the "Discount Text" field.
 
 ## License
 
