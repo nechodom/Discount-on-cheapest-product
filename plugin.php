@@ -2,8 +2,9 @@
 /*
 Plugin Name: Discount for 3 Products
 Description: Provides a discount for the cheapest product when a specified number of products are in the cart.
-Version: 1.3
+Version: 1.2
 Author: Matěj Kevin Nechodom
+Author URI: https://www.nechodom.cz
 */
 
 // Přidání menu do administrace
