@@ -63,7 +63,7 @@ Go to Settings > Discount Settings and enter the desired number in the "Minimum 
 
 ## License
 
-This plugin is licensed under the GPLv2 or later.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
 
 ## Credits
 
